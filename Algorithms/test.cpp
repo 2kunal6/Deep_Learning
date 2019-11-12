@@ -10,8 +10,10 @@ using namespace std;
 
 
 int main() {
-	vector<int> v(1,5, 10);
-	auto it = v.lower_bound()
+	cout<<1+2+2236067977ll<<" "<<1*2*2236067977ll<<" "<<1+4+(2236067977ll*2236067977ll)<<endl;
+
+	//vector<int> v(1,5, 10);
+	//auto it = v.lower_bound()
 	//for(int i=0;i<800000;i++)cout<<"1000000000000000000000000000000000000"<<i<<".00"<<endl;
 	//cout<<stol("100000000000000000000000000.05")<<endl;
 	/*cout<<std::numeric_limits<float>::max()<<endl;
@@ -19,7 +21,7 @@ int main() {
 	cout<<std::numeric_limits<long long>::max()<<endl;
 	cout<<std::numeric_limits<long long>::min()<<endl;
 	*///cout<<stol("100.05");
-	clock_t begin = clock();
+	/*clock_t begin = clock();
 	map<string, int > mp;
 	for(int i=-110;i<=110;i++) {
 		for(int j=-110;j<=110;j++) {
@@ -43,7 +45,7 @@ int main() {
             if(it->second!=6)cout<<it->first<<endl;
         }
 	clock_t end = clock();
-  	cout<<double(end - begin) / CLOCKS_PER_SEC<<endl;
+  	cout<<double(end - begin) / CLOCKS_PER_SEC<<endl;*/
 
 	/*char a='0',b='1';
 	cin>>a>>b;
