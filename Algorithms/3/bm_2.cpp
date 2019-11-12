@@ -23,10 +23,10 @@ int main() {
 		long long u,v,w;
 		cin>>u>>v>>w;
 		
-		if(v>10000000000ll) {
+		/*if(v>10000000000ll) {
 			cout<<"empty set"<<endl;
 			continue;
-		}
+		}*/
 
 		vector<string> ans(3);
 		vector<long long> fs;

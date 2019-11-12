@@ -21,12 +21,12 @@ int main() {
 	cout<<std::numeric_limits<long long>::max()<<endl;
 	cout<<std::numeric_limits<long long>::min()<<endl;
 	*///cout<<stol("100.05");
-	/*clock_t begin = clock();
+	clock_t begin = clock();
 	map<string, int > mp;
-	for(int i=-110;i<=110;i++) {
-		for(int j=-110;j<=110;j++) {
+	for(int i=-1100;i<=1100;i++) {
+		for(int j=-1100;j<=1100;j++) {
 			if(i==j)continue;
-			for(int k=-110;k<=110;k++) {
+			for(int k=-1100;k<=1100;k++) {
 				if(i==k || j==k)continue;
 				string uvw=(to_string(i+j+k) + " " + to_string(i*j*k) + " " + to_string(i*i+j*j+k*k));
 				if(mp.find(uvw)!=mp.end()) {
@@ -37,7 +37,7 @@ int main() {
 				}
 			}
 		}
-		if(i%10==0)cout<<i<<endl;
+		if(i%100==0)cout<<i<<endl;
 	}
 	cout<<mp.begin()->second<<endl;
 	map<string, int>::iterator it;
@@ -45,7 +45,7 @@ int main() {
             if(it->second!=6)cout<<it->first<<endl;
         }
 	clock_t end = clock();
-  	cout<<double(end - begin) / CLOCKS_PER_SEC<<endl;*/
+  	cout<<double(end - begin) / CLOCKS_PER_SEC<<endl;
 
 	/*char a='0',b='1';
 	cin>>a>>b;
