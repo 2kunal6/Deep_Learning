@@ -22,21 +22,20 @@ int main() {
 	while(t--) {
 		long long u,v,w;
 		cin>>u>>v>>w;
-		
-		/*if(v>10000000000ll) {
-			cout<<"empty set"<<endl;
-			continue;
-		}*/
-
+	
 		vector<string> ans(3);
 		vector<long long> fs;
 
 		for(long long i=1;i<sqrt(v);i++) {
+			if(i*i>w)break;
 			if(v%i==0) {
 				fs.push_back(i);
 				fs.push_back(-1*i);
-				fs.push_back(v/i);
-				fs.push_back(-1*(v/i));
+				long long qtnt=v/i;
+				if(qtnt*qtnt<w) {
+					fs.push_back(v/i);
+					fs.push_back(-1*(v/i));
+				}
 			}
 		}
 		long long sqrtv=sqrt(v);
@@ -46,20 +45,20 @@ int main() {
 		}
 
 		sort(fs.begin(), fs.end());
+		//for(int i=0;i<fs.size();i++)cout<<fs[i]<<" ";
 
 		bool fnd=0;
 		for(int i=0;i<fs.size();i++) {
 			for(int j=i+1;j<fs.size();j++) {
-				for(int k=j+1;k<fs.size();k++) {
-					if(fs[i]+fs[j]+fs[k]==u && (fs[i]*fs[j]*fs[k]==v) && (((fs[i]*fs[i])+(fs[j]*fs[j])+(fs[k]*fs[k]))==w)) {
+				long long k=u-(fs[i]+fs[j]);
+					if((fs[i]*fs[j]*k==v) && (((fs[i]*fs[i])+(fs[j]*fs[j])+(k*k))==w)) {
 						ans[0]=std::to_string(fs[i]);
 						ans[1]=std::to_string(fs[j]);
-						ans[2]=std::to_string(fs[k]);
+						ans[2]=std::to_string(k);
 						fnd=1;
 						break;
 					}
 					//if(fs[i]+fs[j]+fs[k]>u || (((fs[i]*fs[i])+(fs[j]*fs[j])+(fs[k]*fs[k]))>w))break;
-				}
 				if(fnd==1)break;
 			}
 			if(fnd==1)break;
