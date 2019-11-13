@@ -1,58 +1,82 @@
 #include<iostream>
-#include<vector>
+#include<map>
 #include<algorithm>
+#include<vector>
 
 using namespace std;
 
-vector<pair<long long, long long> > uh, lh, uhx,lhx,lehy,rihy;
-long long sx,sy;
+map<long long, pair<long long, long long> > mx,my;
+map<long long, pair<long long, long long> >:: iterator it;
+long long sx,sy,px,py;
 
-bool myComparison(const pair<long long, long long> &a,const pair<long long, long long> &b) {
-       return a.second<b.second;
-}
-
-long long dist() {
-	long long ans=0, px=sx, py=sy;
-	for(int i=0;i<uh.size();i++) {
-		ans+=(abs(px-uh[i].first)+abs(py-uh[i].second));
-		px=uh[i].first;
-		py=uh[i].second;
+long long cal() {
+	long long ans=0;
+	px=sx;py=sy;
+	for(it=mx.begin();it!=mx.end();it++) {
+		ans+=(it->second.second-it->second.first);
+		ans+=(abs(px-it->first));
+		px=it->first;
+		if(abs(it->second.first-py)>abs(it->second.second-py)) {
+			py=it->second.first;
+			ans+=(abs(it->second.second-py));
+		} else {
+			py=it->second.second;
+			ans+=(abs(it->second.first-py));
+		}
+		//cout<<ans<<endl;
 	}
-	for(int i=0;i<lh.size();i++) {
-		ans+=(abs(px-lh[i].first)+abs(py-lh[i].second));
-		px=lh[i].first;
-		py=lh[i].second;
-	}
+	//cout<<px<<" "<<py<<" "<<sx<<" "<<sy<<endl;
 	ans+=(abs(px-sx)+abs(py-sy));
 	return ans;
 }
-
+long long caly() {
+	long long ans=0;
+	px=sx;py=sy;
+	for(it=my.begin();it!=my.end();it++) {
+		ans+=(it->second.second-it->second.first);
+		ans+=(abs(px-it->first));
+		px=it->first;
+		if(abs(it->second.first-py)>abs(it->second.second-py)) {
+			py=it->second.first;
+			ans+=(abs(it->second.second-py));
+		} else {
+			py=it->second.second;
+			ans+=(abs(it->second.first-py));
+		}
+		//cout<<ans<<endl;
+	}
+	//cout<<px<<" "<<py<<" "<<sx<<" "<<sy<<endl;
+	ans+=(abs(px-sx)+abs(py-sy));
+	return ans;
+}
 int main() {
-	long long n,x,y;
+	long long n,x,y,ans1=0,ans2=0;
 	cin>>n;
 	cin>>sx>>sy;
+	
+	mx[sx]=make_pair(sy, sy);
+	my[sy]=make_pair(sx, sx);
 	for(int i=1;i<n;i++) {
 		cin>>x>>y;
-		if(x<=sx)uhx.push_back(make_pair(x,y));
-		else lhx.push_back(make_pair(x,y));
-
-		if(y<=sy)rihy.push_back(make_pair(x,y));
-		else lehy.push_back(make_pair(x,y));
+		it=mx.find(x);
+		if(it==mx.end())mx[x]=make_pair(y,y);
+		else {
+			if(y<it->second.first)it->second.first=y;
+			if(y>it->second.second)it->second.second=y;
+		}
+		it=my.find(y);
+		if(it==my.end())my[y]=make_pair(x,x);
+		else {
+			if(x<it->second.first)it->second.first=x;
+			if(x>it->second.second)it->second.second=x;
+		}
 	}
-	sort(uhx.begin(), uhx.end());
-	reverse(uhx.begin(), uhx.end());
-	sort(lhx.begin(), lhx.end());
-	uh=uhx;lh=lhx;
-	long long ans=dist(),oo;
-	
-	sort(rihy.begin(), rihy.end(), myComparison);
-	reverse(rihy.begin(), rihy.end());
-	sort(lehy.begin(), lehy.end(), myComparison);
-	uh=rihy;lh=lehy;
-	oo=dist();
+	ans1=cal();
 
-	if(oo<ans)ans=oo;
-	cout<<ans<<endl;
+	swap(sx, sy);
+	ans2=caly();
+
+	cout<<max(ans1,ans2)<<endl;
 	
 	return 0;
 }
