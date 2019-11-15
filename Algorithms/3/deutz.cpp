@@ -74,13 +74,13 @@ void merge_path (int a, int b) {
 
     }
 
-    for (int v : path_a) {
+    for (int v=0; v<path_a.size();v++) {
         dsu_2ecc[v] = lca;
         if (v == lca)
             break;
         --bridges;
     }
-    for (int v : path_b) {
+    for (int v=0;v<path_b.size();v++) {
         dsu_2ecc[v] = lca;
         if (v == lca)
             break;
