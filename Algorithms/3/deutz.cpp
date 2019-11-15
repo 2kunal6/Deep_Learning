@@ -8,6 +8,7 @@ vector<int> par, dsu_2ecc, dsu_cc, dsu_cc_size;
 int bridges,n;
 int lca_iteration;
 vector<int> last_visit;
+vector<vector<bool> > g;
 
 void init() {
     par.resize(n);
@@ -110,14 +111,50 @@ void add_edge(int a, int b) {
         merge_path(a, b);
     }
 }
+int joincc() {
+	vector<bool> vis(n,0);
+	int prev=-1,ans=0;
+	for(int i=0;i<n;i++) {
+		if(vis[i]==1)continue;
+		stack<int> s;
+		s.push(i);
+		if(prev!=-1) {
+			add_edge(prev,i);
+			add_edge(i, prev);
+			prev=i;
+		}
+		while(!s.empty()) {
+			int val=s.top();
+			s.pop();
+			vis[val]=1;
+			for(int j=0;j<n;j++) {
+				if(g[val][j]==1 && vis[j]==0) {
+					vis[j]=1;
+					s.push(j);
+				}
+			}
+		}
+		ans++;
+	}
+	return ans;
+}
 int main() {
-	int x,y,m;
+	int x,y,m,icc;
 	cin>>n>>m;
 	init();
+	for(int i=0;i<n;i++) {
+		vector<bool> temp;
+		for(int j=0;j<n;j++)temp.push_back(0);
+		g.push_back(temp);
+	}
+
 	for(int i=0;i<m;i++) {
 		cin>>x>>y;
 		add_edge(x,y);
+		g[x][y]=1;
+		g[y][x]=1;
 	}
-	cout<<bridges<<endl;
+	icc=joincc();
+	cout<<bridges-icc-1<<endl;
 	return 0;
 }
