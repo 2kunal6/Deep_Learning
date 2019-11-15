@@ -30,11 +30,11 @@ long long cal() {
 		ans+=(abs(px-it->first));
 		px=it->first;
 		if(abs(it->second.first-py)>abs(it->second.second-py)) {
-			py=it->second.second;
 			ans+=(abs(it->second.first-py));
+			py=it->second.second;
 		} else {
-			py=it->second.first;
 			ans+=(abs(it->second.second-py));
+			py=it->second.first;
 		}
 		//cout<<ans<<endl;
 	}
