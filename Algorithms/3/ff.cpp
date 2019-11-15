@@ -58,6 +58,7 @@ int main() {
 	swap(sx, sy);
 	for(int i=0;i<n;i++)swap(inp[i].first, inp[i].second);
 	ans2=cal();
+	cout<<ans1<<" "<<ans2<<endl;
 	cout<<min(ans1,ans2)<<endl;
 
 	return 0;
