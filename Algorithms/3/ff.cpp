@@ -27,22 +27,29 @@ void kruskal() {
 		if(vis[edges[i].from]==1 && vis[edges[i].to]==1)continue;
 		vis[edges[i].from]=vis[edges[i].to]=1;
 		mst[edges[i].from].push_back(edges[i].to);
+		mst[edges[i].to].push_back(edges[i].from);
 	}
 }
 void preord() {
-	stack<int> s;
-	s.push(0);
-	int prev=0;
-	while(!s.empty()) {
-		int val=s.top();
-		//cout<<val<<endl;
-		s.pop();
-		ans+=(abs(nodes[prev].first-nodes[val].first)+abs(nodes[prev].second-nodes[val].second));
-		prev=val;
-		for(int j=0;j<mst[val].size();j++) {
-			s.push(mst[val][j]);
+	vector<bool> vis(n,0);
+	int prev;
+	//for(int i=0;i<n;i++) {
+		//if(vis[i]==1)continue;
+		stack<int> s;
+		s.push(0);
+		prev=0;
+		while(!s.empty()) {
+			int val=s.top();
+			//cout<<val<<endl;
+			s.pop();
+			vis[val]=1;
+			ans+=(abs(nodes[prev].first-nodes[val].first)+abs(nodes[prev].second-nodes[val].second));
+			prev=val;
+			for(int j=0;j<mst[val].size();j++) {
+				if(vis[mst[val][j]]==0)s.push(mst[val][j]);
+			}
 		}
-	}
+	//}
 	ans+=(abs(nodes[prev].first-nodes[0].first)+abs(nodes[prev].second-nodes[0].second));
 }
 int main() {
