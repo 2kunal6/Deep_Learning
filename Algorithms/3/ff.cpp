@@ -37,13 +37,13 @@ void preord() {
 		int val=s.top();
 		//cout<<val<<endl;
 		s.pop();
-		ans+=(abs(nodes[prev].first-nodes[val].first)+abs(nodes[prev].second+nodes[val].second));
+		ans+=(abs(nodes[prev].first-nodes[val].first)+abs(nodes[prev].second-nodes[val].second));
 		prev=val;
 		for(int j=0;j<mst[val].size();j++) {
 			s.push(mst[val][j]);
 		}
 	}
-	ans+=(abs(nodes[prev].first-nodes[0].first)+abs(nodes[prev].second+nodes[0].second));
+	ans+=(abs(nodes[prev].first-nodes[0].first)+abs(nodes[prev].second-nodes[0].second));
 }
 int main() {
 	cin>>n;
