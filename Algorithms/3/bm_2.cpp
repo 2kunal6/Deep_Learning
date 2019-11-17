@@ -20,46 +20,42 @@ int main() {
 	int t;
 	cin>>t;
 	while(t--) {
-		long long u,v,w;
-		cin>>u>>v>>w;
-	
+		long long u,v,w,cbrtv;
 		vector<string> ans(3);
-		vector<long long> fs;
-
-		for(long long i=1;i<sqrt(v);i++) {
-			if(i*i>w)break;
-			if(v%i==0) {
-				fs.push_back(i);
-				fs.push_back(-1*i);
-				long long qtnt=v/i;
-				if(qtnt*qtnt<w) {
-					fs.push_back(v/i);
-					fs.push_back(-1*(v/i));
-				}
-			}
-		}
-		long long sqrtv=sqrt(v);
-		if(sqrtv*sqrtv==v) {
-			fs.push_back(sqrtv);
-			fs.push_back(-1*sqrtv);
-		}
-
-		sort(fs.begin(), fs.end());
-		//for(int i=0;i<fs.size();i++)cout<<fs[i]<<" ";
-
 		bool fnd=0;
-		for(int i=0;i<fs.size();i++) {
-			for(int j=i+1;j<fs.size();j++) {
-				long long k=u-(fs[i]+fs[j]);
-					if((fs[i]*fs[j]*k==v) && (((fs[i]*fs[i])+(fs[j]*fs[j])+(k*k))==w)) {
-						ans[0]=std::to_string(fs[i]);
-						ans[1]=std::to_string(fs[j]);
-						ans[2]=std::to_string(k);
+		
+		cin>>u>>v>>w;
+
+		cbrtv=cbrt(v);
+		for(int i=-cbrtv;i<=cbrtv;i++) {
+			if(i==0)continue;
+			if(v%i!=0)continue;
+			long long temp=u-i-(w-(i*i)), lov, thirdn,ans2,ans3;
+			if(2ll*v != temp)continue;
+			lov=v/i;
+			for(int j=1;j<=sqrt(lov);j++) {
+				if(lov%j==0) {
+					thirdn=lov/j;
+					if(i+j+thirdn==u) {
+						ans2=j;ans3=thirdn;
 						fnd=1;
-						break;
+					} else if(i-j+thirdn==u) {
+						ans2=-j;ans3=thirdn;
+						fnd=1;
+					} else if(i+j-thirdn==u) {
+						ans2=j;ans3=-thirdn;
+						fnd=1;
+					} else if(i-j-thirdn==u) {
+						ans2=-j;ans3=-thirdn;
+						fnd=1;
 					}
-					//if(fs[i]+fs[j]+fs[k]>u || (((fs[i]*fs[i])+(fs[j]*fs[j])+(fs[k]*fs[k]))>w))break;
-				if(fnd==1)break;
+				}
+				if(fnd==1) {
+					break;
+					ans[0]=to_string(i);
+					ans[1]=to_string(ans2);
+					ans[2]=to_string(ans3);
+				}
 			}
 			if(fnd==1)break;
 		}
