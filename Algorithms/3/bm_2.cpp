@@ -30,9 +30,10 @@ int main() {
 		for(int i=-cbrtv;i<=cbrtv;i++) {
 			if(i==0)continue;
 			if(v%i!=0)continue;
-			long long temp=u-i-(w-(i*i)), lov, thirdn,ans2,ans3;
-			if(2ll*v != temp)continue;
+			long long um=(u-i)*(u-i);
+			long long temp=um-(w-(i*i)), lov, thirdn,ans2,ans3;
 			lov=v/i;
+			if(2ll*lov != temp)continue;
 			for(int j=1;j<=sqrt(lov);j++) {
 				if(lov%j==0) {
 					thirdn=lov/j;
@@ -51,10 +52,10 @@ int main() {
 					}
 				}
 				if(fnd==1) {
-					break;
 					ans[0]=to_string(i);
 					ans[1]=to_string(ans2);
 					ans[2]=to_string(ans3);
+					break;
 				}
 			}
 			if(fnd==1)break;
