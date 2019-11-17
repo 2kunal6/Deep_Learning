@@ -1,16 +1,18 @@
 #include<iostream>
-#include<vector>
 #include<algorithm>
 #include<iomanip>
 #include<cmath>
+#include<map>
+
 using namespace std;
 
 int main() {
-	int c,p;
-	double ri,temp,ans;
+	int c,p,ans=0;
+	double r,temp;
+	long long ri;
 	cin>>c>>p>>ri;
 
-	vector<double> ci(c);
+	vector<> ci(c);
 
 	for(int i=0;i<c;i++) {
 		cin>>ci[i];

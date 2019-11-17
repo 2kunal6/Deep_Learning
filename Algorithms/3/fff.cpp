@@ -1,30 +1,33 @@
 #include<iostream>
 #include<vector>
+#include<map>
 #include<stack>
 
 using namespace std;
 
 vector<vector<int> > g;
-int ans=0,n,m;
+int n,m;
+map<int, bool> ans;
 
-void dfs() {
+void avc() {
 	vector<bool> vis(n,0);
 	for(int i=0;i<n;i++) {
 		if(vis[i]==1)continue;
-		int non=0;
 		stack<int> s;
 		s.push(i);
 		while(!s.empty()) {
 			int val=s.top();
 			s.pop();
-			vis[val]=1;
-			non++;
 			for(int j=0;j<g[val].size();j++) {
-				if(vis[g[val][j]]==0)s.push(g[val][j]);
+				if(vis[g[val][j]]==0) {
+					vis[g[val][j]]=1;
+					vis[val]=1;
+					ans[g[val][j]]=1;
+					ans[val]=1;
+					break;
+				}
 			}
 		}
-		//cout<<non<<endl;
-		ans+=(non/2);
 	}
 }
 
@@ -41,7 +44,7 @@ int main() {
 		g[x].push_back(y);
 		g[y].push_back(x);
 	}
-	dfs();
-	cout<<ans<<endl;
+	avc();
+	cout<<ans.size()<<endl;
 	return 0;
 }

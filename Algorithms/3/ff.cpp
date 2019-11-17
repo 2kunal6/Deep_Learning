@@ -33,23 +33,20 @@ void kruskal() {
 void preord() {
 	vector<bool> vis(n,0);
 	int prev;
-	//for(int i=0;i<n;i++) {
-		//if(vis[i]==1)continue;
-		stack<int> s;
-		s.push(0);
-		prev=0;
-		while(!s.empty()) {
-			int val=s.top();
-			//cout<<val<<endl;
-			s.pop();
-			vis[val]=1;
-			ans+=(abs(nodes[prev].first-nodes[val].first)+abs(nodes[prev].second-nodes[val].second));
-			prev=val;
-			for(int j=0;j<mst[val].size();j++) {
-				if(vis[mst[val][j]]==0)s.push(mst[val][j]);
-			}
+	stack<int> s;
+	s.push(0);
+	prev=0;
+	while(!s.empty()) {
+		int val=s.top();
+		s.pop();
+		if(vis[val]==1)continue;
+		vis[val]=1;
+		ans+=(abs(nodes[prev].first-nodes[val].first)+abs(nodes[prev].second-nodes[val].second));
+		prev=val;
+		for(int j=0;j<mst[val].size();j++) {
+			if(vis[mst[val][j]]==0)s.push(mst[val][j]);
 		}
-	//}
+	}
 	ans+=(abs(nodes[prev].first-nodes[0].first)+abs(nodes[prev].second-nodes[0].second));
 }
 int main() {
@@ -71,10 +68,10 @@ int main() {
 	//for(int i=0;i<edges.size();i++)cout<<edges[i].len<<" "<<edges[i].from<<" "<<edges[i].to<<endl;
 	kruskal();
 	/*for(int i=0;i<mst.size();i++) {
-		cout<<i<<":";
-		for(int j=0;j<mst[i].size();j++)cout<<mst[i][j]<<" ";
-		cout<<endl;
-	}*/
+	  cout<<i<<":";
+	  for(int j=0;j<mst[i].size();j++)cout<<mst[i][j]<<" ";
+	  cout<<endl;
+	  }*/
 	preord();
 	cout<<ans<<endl;
 	return 0;
