@@ -33,7 +33,7 @@ int main() {
 			long long um=(u-i)*(u-i);
 			long long temp=um-(w-(i*i)), lov, thirdn,ans2,ans3;
 			lov=v/i;
-			if(2ll*lov != temp)continue;
+			if((2ll*lov!=temp) && (-2ll*lov!=temp))continue;
 			for(int j=1;j<=sqrt(lov);j++) {
 				if(lov%j==0) {
 					thirdn=lov/j;
