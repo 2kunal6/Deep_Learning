@@ -10,7 +10,7 @@ using namespace std;
 
 
 int main() {
-	long long x=1000000000ll,y=1000000001ll,z=1;
+	long long x=2100000000ll,y=2100000001ll,z=1;
 	cout<<x+y+z<<" "<<x*y*z<<" "<<(x*x)+(y*y)+(z*z)<<endl;
 
 	//vector<int> v(1,5, 10);
