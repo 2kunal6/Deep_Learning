@@ -44,6 +44,10 @@ void find(long long i) {
 				ans2=-j;ans3=-thirdn;
 				fnd=1;
 			}
+			if(i==ans2 || i==ans3 || ans2==ans3) {
+				fnd=0;
+				continue;
+			}
 		}
 		if(fnd==1) {
 			ans[0]=to_string(i);
