@@ -10,7 +10,8 @@ using namespace std;
 
 
 int main() {
-	cout<<10000000+10000001+10000<<" "<<10000000ll*10000001ll*10000ll<<" "<<100000000000000ll+(10000001ll*10000001ll)+100000000ll<<endl;
+	long long x=1000000000ll,y=1000000001ll,z=1;
+	cout<<x+y+z<<" "<<x*y*z<<" "<<(x*x)+(y*y)+(z*z)<<endl;
 
 	//vector<int> v(1,5, 10);
 	//auto it = v.lower_bound()

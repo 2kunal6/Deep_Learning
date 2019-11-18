@@ -7,7 +7,8 @@
 using namespace std;
 
 bool fnd;
-long long ans2,ans3;
+long long ans2,ans3,u,v,w;
+vector<string> ans(3);
 
 bool compare(vector<string> a, vector<string> b) {
 	if(a[0]<b[0])return 1;
@@ -22,8 +23,11 @@ void find(long long i) {
 	long long um=(u-i)*(u-i);
 	long long temp=um-(w-(i*i)), lov, thirdn;
 	lov=v/i;
-	if((2ll*lov!=temp) && (-2ll*lov!=temp))continue;
-	for(int j=1;j<=sqrt(lov);j++) {
+	/*if(i==2 || i==-2) {
+		cout<<temp<<" "<<lov<<endl;
+	}*/
+	if(2ll*lov!=temp)return;
+	for(int j=1;j<=sqrt(abs(lov));j++) {
 		if(lov%j==0) {
 			thirdn=lov/j;
 			if(i+j+thirdn==u) {
@@ -55,14 +59,13 @@ int main() {
 	int t;
 	cin>>t;
 	while(t--) {
-		long long u,v,w,cbrtv;
-		vector<string> ans(3);
+		long long cbrtv;
 		fnd=0;
 
 		cin>>u>>v>>w;
 
 		cbrtv=cbrt(v);
-		for(int i=-cbrtv;i<=cbrtv;i++) {
+		for(int i=1;i<=cbrtv;i++) {
 			if(i==0)continue;
 			if(v%i!=0)continue;
 			find(i);
