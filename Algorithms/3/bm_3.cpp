@@ -23,12 +23,9 @@ void find(long long i) {
 	long long um=(u-i)*(u-i);
 	long long temp=um-(w-(i*i)), lov, thirdn;
 	lov=v/i;
-	/*if(i==2 || i==-2) {
-		cout<<temp<<" "<<lov<<endl;
-	}*/
 	if(temp%2!=0)return;
 	if(lov!=(temp/2ll))return;
-	for(int j=1;j<=sqrt(abs(lov));j++) {
+	for(long long j=1;j<=sqrt(abs(lov));j++) {
 		if(lov%j==0) {
 			thirdn=lov/j;
 			if(i+j+thirdn==u) {
@@ -70,7 +67,7 @@ int main() {
 		cin>>u>>v>>w;
 
 		cbrtv=cbrt(v);
-		for(int i=1;i<=cbrtv;i++) {
+		for(long long i=1;i<=cbrtv;i++) {
 			if(i==0)continue;
 			if(v%i!=0)continue;
 			find(i);
