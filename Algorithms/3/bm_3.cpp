@@ -21,6 +21,7 @@ bool compare(vector<string> a, vector<string> b) {
 
 void find(long long i) {
 	long long um=(u-i)*(u-i);
+	if(um>3000000000ll)return;
 	long long temp=um-(w-(i*i)), lov, thirdn;
 	lov=v/i;
 	if(temp%2!=0)return;
@@ -65,6 +66,10 @@ int main() {
 		fnd=0;
 
 		cin>>u>>v>>w;
+		if(u>3000000000ll) {
+			cout<<"empty set";
+			continue;
+		}
 
 		cbrtv=cbrt(v);
 		for(long long i=1;i<=cbrtv;i++) {
