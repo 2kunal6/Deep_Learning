@@ -67,7 +67,7 @@ int main() {
 
 		cin>>u>>v>>w;
 		if(u>3000000000ll) {
-			cout<<"empty set";
+			cout<<"empty set"<<endl;
 			continue;
 		}
 
