@@ -27,8 +27,8 @@ int main() {
 	cin>>wid;
 	iwid=wid*1000;
 	iwid=iwid*iwid;
-	map<long long, vector<long long> > mp;
-	map<long long, vector<long long> >::iterator low,up,it;
+	multimap<long long, vector<long long> > mp;
+	multimap<long long, vector<long long> >::iterator low,up,it;
 
 	while(cin>>x) {
 		pnt[dcnt]=x*1000;
@@ -37,15 +37,17 @@ int main() {
 		dcnt=0;
 		
 		long long dtc=dist(zos);
-		//cout<<mp.size()<<endl;
 		if(mp.size()==0) {
-			mp[dtc]=pnt;
+			mp.insert(pair<long long, vector<long long> >(dtc, pnt));
 			continue;
 		}
-		//cout<<mp.size()<<endl;
 		up=mp.upper_bound(dtc+iwid);
-		low=mp.lower_bound(abs(dtc-iwid));
+		if(dtc<=iwid)low=mp.begin();
+		else low=mp.lower_bound(dtc-iwid);
 		bool found=0;
+		
+		cout<<dtc<<" "<<low->first<<endl;
+		
 		for(it=low;it!=up;it++) {
 			if(dist(it->second)<=iwid) {
 				found=1;
@@ -53,7 +55,7 @@ int main() {
 			}
 		}
 		if(found==0) {
-			mp[dtc]=pnt;
+			mp.insert(pair<long long, vector<long long> >(dtc, pnt));
 		}
 	}
 	cout<<mp.size()<<endl;
