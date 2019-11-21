@@ -3,42 +3,43 @@
 #include<map>
 #include<algorithm>
 #include<vector>
+#include<cmath>
 
 using namespace std;
 
-vector<long long> pnt,zos;
+vector<double> pnt,zos;
 int d;
 
-long long dist(vector<long long> tv) {
-	long long ans=0,tmp;
+double dist(vector<double> tv) {
+	double ans=0,tmp;
 	for(int i=0;i<d;i++) {
 		tmp=pnt[i]-tv[i];
 		ans+=(tmp*tmp);
 	}
-	return ans;
+	return sqrt(ans);
 }
 
 int main() {
-	long long iwid, dcnt=0;
+	long long  dcnt=0;
 	cin>>d;
 	pnt.resize(d);
 	zos.resize(d);
-	double wid,x;
+	double iwid,wid,x;
 	cin>>wid;
-	iwid=wid*1000;
+	iwid=wid;
 	iwid=iwid*iwid;
-	multimap<long long, vector<long long> > mp;
-	multimap<long long, vector<long long> >::iterator low,up,it;
+	multimap<double, vector<double> > mp;
+	multimap<double, vector<double> >::iterator low,up,it;
 
 	while(cin>>x) {
-		pnt[dcnt]=x*1000;
+		pnt[dcnt]=x;
 		dcnt++;
 		if(dcnt%d!=0)continue;
 		dcnt=0;
 		
-		long long dtc=dist(zos);
+		double dtc=dist(zos);
 		if(mp.size()==0) {
-			mp.insert(pair<long long, vector<long long> >(dtc, pnt));
+			mp.insert(pair<double, vector<double> >(dtc, pnt));
 			continue;
 		}
 		up=mp.upper_bound(dtc+iwid);
@@ -46,17 +47,18 @@ int main() {
 		else low=mp.lower_bound(dtc-iwid);
 		bool found=0;
 		
-		cout<<dtc<<":";	
-		
+		//cout<<dtc+iwid<<" "<<dtc-iwid<<endl;
+		//cout<<pnt[0]<<" "<<pnt[1]<<" "<<dtc<<" "<<low->second[0]<<" "<<low->second[1]<<endl;
+			
 		for(it=low;it!=up;it++) {
-			cout<<it->second[0]<<" "<<it->second[1]<<endl;
+			//cout<<pnt[0]<<" "<<pnt[1]<<" "<<it->second[0]<<" "<<it->second[1]<<endl;
 			if(dist(it->second)<=iwid) {
 				found=1;
 				break;
 			}
 		}
 		if(found==0) {
-			mp.insert(pair<long long, vector<long long> >(dtc, pnt));
+			mp.insert(pair<double, vector<double> >(dtc, pnt));
 		}
 	}
 	cout<<mp.size()<<endl;
