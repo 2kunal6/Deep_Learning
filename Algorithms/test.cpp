@@ -10,6 +10,19 @@ using namespace std;
 
 
 int main() {
+	multimap<long long, vector<long long> > mp;
+	multimap<long long, vector<long long> >::iterator low,up,it;
+	vector<long long> v;
+	
+	mp.insert(pair<long long, vector<long long> >(5, v));
+	mp.insert(pair<long long, vector<long long> >(-1, v));
+	mp.insert(pair<long long, vector<long long> >(5, v));
+	mp.insert(pair<long long, vector<long long> >(100, v));
+	mp.insert(pair<long long, vector<long long> >(2, v));
+	mp.insert(pair<long long, vector<long long> >(5, v));
+
+	for(it=mp.lower_bound(-5);it!=mp.end();it++)cout<<it->first<<endl;
+	
 	long long x=2100000000ll,y=2100000001ll,z=1;
 	cout<<x+y+z<<" "<<x*y*z<<" "<<(x*x)+(y*y)+(z*z)<<endl;
 

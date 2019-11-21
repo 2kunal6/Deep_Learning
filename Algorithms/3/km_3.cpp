@@ -15,7 +15,7 @@ long long dist(vector<long long> tv) {
 		tmp=pnt[i]-tv[i];
 		ans+=(tmp*tmp);
 	}
-	return tmp;
+	return ans;
 }
 
 int main() {
@@ -46,9 +46,10 @@ int main() {
 		else low=mp.lower_bound(dtc-iwid);
 		bool found=0;
 		
-		cout<<dtc<<" "<<low->first<<endl;
+		cout<<dtc<<":";	
 		
 		for(it=low;it!=up;it++) {
+			cout<<it->second[0]<<" "<<it->second[1]<<endl;
 			if(dist(it->second)<=iwid) {
 				found=1;
 				break;
