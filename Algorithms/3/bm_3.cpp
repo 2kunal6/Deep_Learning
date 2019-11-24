@@ -62,7 +62,6 @@ int main() {
 	int t;
 	cin>>t;
 	while(t--) {
-		long long cbrtv;
 		fnd=0;
 
 		cin>>u>>v>>w;
@@ -70,10 +69,8 @@ int main() {
 			cout<<"empty set"<<endl;
 			continue;
 		}
-
-		cbrtv=cbrt(v);
+		long long cbrtv=cbrt(v);
 		for(long long i=1;i<=cbrtv;i++) {
-			if(i==0)continue;
 			if(v%i!=0)continue;
 			find(i);
 			if(fnd==1)break;
