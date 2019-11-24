@@ -27,7 +27,6 @@ int main() {
 	double wid,x;
 	cin>>wid;
 	iwid=wid*1000;
-	iwid=iwid*iwid;
 	multimap<double, vector<long long> > mp;
 	multimap<double, vector<long long> >::iterator low,up,it;
 
@@ -47,10 +46,10 @@ int main() {
 		else low=mp.lower_bound(dtc-iwid);
 		bool found=0;
 		
-		cout<<dtc<<":";	
+		//cout<<dtc<<":";	
 		
 		for(it=low;it!=up;it++) {
-			cout<<it->second[0]<<" "<<it->second[1]<<endl;
+			//cout<<it->second[0]<<" "<<it->second[1]<<endl;
 			if(dist(it->second)<=iwid) {
 				found=1;
 				break;
