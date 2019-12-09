@@ -5,12 +5,24 @@
 #include <bitset>
 #include<map>
 #include<limits>
+#include<sstream>
 
 using namespace std;
 
 
 int main() {
-	multimap<long long, vector<long long> > mp;
+	bitset<20> b(5);
+	cout<<b<<endl;
+	b.set(2);
+	cout<<b<<endl;
+	/*vector<string> words;
+	string s, tmp;
+	stringstream ss(s);
+	while(getline(ss, tmp, ',')){
+    		words.push_back(tmp);
+	}
+	for(int i=0;i<words.size();i++)cout<<words[i]<<" ";*/
+	/*multimap<long long, vector<long long> > mp;
 	multimap<long long, vector<long long> >::iterator low,up,it;
 	vector<long long> v;
 	
@@ -24,7 +36,7 @@ int main() {
 	for(it=mp.lower_bound(-5);it!=mp.end();it++)cout<<it->first<<endl;
 	
 	long long x=2100000000ll,y=2100000001ll,z=1;
-	cout<<x+y+z<<" "<<x*y*z<<" "<<(x*x)+(y*y)+(z*z)<<endl;
+	cout<<x+y+z<<" "<<x*y*z<<" "<<(x*x)+(y*y)+(z*z)<<endl;*/
 
 	//vector<int> v(1,5, 10);
 	//auto it = v.lower_bound()
