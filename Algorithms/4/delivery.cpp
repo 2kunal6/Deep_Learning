@@ -7,11 +7,12 @@
 using namespace std;
 
 vector<vector<double> > g;
+vector<vector<double> > dirg;
 int src,dst,n;
 vector<pair<int, int> > cs;
 
 void dijk() {
-	double dist[n];
+	vector<double> dist(n);
 	bool sp[n];
 	for(int i=0;i<n;i++) {
 		dist[i]=DBL_MAX;
@@ -33,11 +34,36 @@ void dijk() {
 		}
 	}
 	for(int i=0;i<n;i++) {
-		if(dist[i]>cs[i].first)g[src][i]=DBL_MAX;
-		else g[src][i]/=(double)cs[i].second;
+		if(dist[i]>cs[i].first)dist[i]=-1;
+		else dist[i]/=(double)cs[i].second;
 	}
+	dirg.push_back(dist);
 }
-
+double dijka() {
+	double dist[n];
+	bool sp[n];
+	for(int i=0;i<n;i++) {
+		dist[i]=DBL_MAX;
+		sp[i]=0;
+	}
+	dist[src]=0;
+	for(int i=0;i<n-1;i++) {
+		int minv;
+		double mindist=DBL_MAX;
+		for(int j=0;j<n;j++) {
+			if(sp[j]==0 && dist[j]<mindist) {
+				mindist=dist[j];
+				minv=j;
+			}
+		}
+		sp[minv]=1;
+		if(minv==dst)return dist[dst];
+		for(int j=0;j<n;j++) {
+			if(!sp[j] && dirg[minv][j]!=-1 && dist[minv]!=DBL_MAX && (dist[minv]+dirg[minv][j]<dist[j]))dist[j]=dist[minv]+dirg[minv][j];
+		}
+	}
+	return dist[dst];
+}
 int main() {
 	int q, csf, css;
 	cin>>n>>q;
@@ -51,7 +77,6 @@ int main() {
 		vector<double> tmp(n);
 		for(int j=0;j<n;j++){
 			cin>>tmp[j];
-			if(tmp[j]==-1)tmp[j]=DBL_MAX;
 		}
 		g.push_back(tmp);
 	}
@@ -60,15 +85,15 @@ int main() {
 		dijk();
 	}
 	for(int i=0;i<n;i++) {
-		for(int j=0;j<n;j++)cout<<g[i][j]<<" ";
+		for(int j=0;j<n;j++)cout<<dirg[i][j]<<" ";
 		cout<<endl;
 	}
-	/*while(q--) {
+	while(q--) {
 		cin>>src>>dst;
 		src--;dst--;
 		cout << fixed << setprecision(2);
-		cout<<dijk()<<" ";
-	}*/
+		cout<<dijka()<<" ";
+	}
 	cout<<endl;
 	return 0;
 }
