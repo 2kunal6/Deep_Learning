@@ -14,7 +14,7 @@ int main() {
 	map<string, int> mp;
 	map<string, int>::iterator it;
 	vector<bool> eo(n, 0);
-	vector<bitset<50> > rset(n);
+	vector<bitset<10000> > rset(n);
 	for(int i=0;i<n;i++) {
 		string ln,tmp="";
 		getline(cin, ln);
@@ -35,8 +35,9 @@ int main() {
 		if(tmp=="odd")eo[i]=1;
 	}
 	tot_names=mp.size();
-	for(long long i=0;i<10000000000000000;i++) {
-		bitset<50> comb(i);
+	long long combi=0;
+	while(1) {
+		bitset<10000> comb(combi);
 		bool corr=1;
 		for(int j=0;j<n;j++) {
 			int matches=(comb & rset[j]).count();
@@ -47,8 +48,10 @@ int main() {
 		}
 		if(corr==1 && comb.count()>ans) {
 			ans=comb.count();
+			break;
 		}
 		if(comb.count()==tot_names)break;
+		combi++;
 	}
 	cout<<ans<<endl;
 	return 0;

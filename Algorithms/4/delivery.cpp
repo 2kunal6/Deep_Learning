@@ -1,53 +1,69 @@
 #include<iostream>
 #include<vector>
-#include<stack>
+#include<climits>
+#include<cfloat>
+#include<iomanip>
 
 using namespace std;
 
-vector<vector<int> > g;
-vector<bool> vis;
-int n;
+vector<vector<double> > g;
+int src,dst,n;
 
-void dfs(int at, int par) {
-	vis[at]=1;
-	id++;
-	low[at]=ids[at]=id;
-	for(int i=0;i<g[at].size();i++) {
-		int to=g[at][i];
-		if(to==par)continue;
-		if(!vis[to]) {
-			dfs(to,at);
-			low[at]=min(low[at], low[to]);
-			if(ids[at]<low[to])brs++;
-		} else {
-			low[at]=min(low[at], ids[to]);
+double dijk() {
+	double dist[n];
+	bool sp[n];
+	for(int i=0;i<n;i++) {
+		dist[i]=DBL_MAX;
+		sp[i]=0;
+	}
+	dist[src]=0;
+	for(int i=0;i<n-1;i++) {
+		int minv;
+		double mindist=DBL_MAX;
+		for(int j=0;j<n;j++) {
+			if(sp[j]==0 && dist[j]<mindist) {
+				mindist=dist[j];
+				minv=j;
+			}
 		}
+		sp[minv]=1;
+		if(minv==dst)return dist[dst];
+		for(int j=0;j<n;j++) {
+			if(!sp[j] && g[minv][j]!=-1 && dist[minv]!=DBL_MAX && (dist[minv]+g[minv][j]<dist[j]))dist[j]=dist[minv]+g[minv][j];
+		}
+		//for(int j=0;j<n;j++)cout<<dist[j]<<" ";
+		//cout<<endl;
 	}
-}
-
-void findbs() {
-	for(int i=0;i<n;i++) {
-		ids.push_back(0);
-		low.push_back(0);
-		vis.push_back(0);
-	}
-	for(int i=0;i<n;i++) {
-		if(!vis[i])dfs(i, -1);
-	}
+	return dist[dst];
 }
 
 int main() {
-	int x,y,m;
-	cin>>n>>m;
+	int q;
+	cin>>n>>q;
 
-	g.reserve(n);
+	vector<pair<int, int> > cs(n);
+	for(int i=0;i<n;i++)cin>>cs[i].first>>cs[i].second;
 
-	for(int i=0;i<m;i++) {
-		cin>>x>>y;
-		g[x].push_back(y);
-		g[y].push_back(x);
+	for(int i=0;i<n;i++) {
+		vector<double> tmp(n);
+		for(int j=0;j<n;j++){
+			cin>>tmp[j];
+			if(cs[i].first<tmp[j])tmp[j]=-1;
+			if(tmp[j]==-1)continue;
+			tmp[j]/=(double)cs[i].second;
+		}
+		g.push_back(tmp);
 	}
-	findbs();
-	cout<<brs<<endl;
+	for(int i=0;i<n;i++) {
+		for(int j=0;j<n;j++)cout<<g[i][j]<<" ";
+		cout<<endl;
+	}
+	while(q--) {
+		cin>>src>>dst;
+		src--;dst--;
+		cout << fixed << setprecision(2);
+		cout<<dijk()<<" ";
+	}
+	cout<<endl;
 	return 0;
 }
