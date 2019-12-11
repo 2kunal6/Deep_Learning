@@ -33,10 +33,12 @@ void dijk() {
 			if(!sp[j] && g[minv][j]!=-1 && dist[minv]!=DBL_MAX && (dist[minv]+g[minv][j]<dist[j]))dist[j]=dist[minv]+g[minv][j];
 		}
 	}
+	//for(int i=0;i<n;i++)cout<<dist[i]<<" ";cout<<endl;
 	for(int i=0;i<n;i++) {
-		if(dist[i]>cs[i].first)dist[i]=-1;
-		else dist[i]/=(double)cs[i].second;
+		if(dist[i]>cs[src].first)dist[i]=-1;
+		else dist[i]/=(double)cs[src].second;
 	}
+	//for(int i=0;i<n;i++)cout<<dist[i]<<" ";cout<<endl;
 	dirg.push_back(dist);
 }
 double dijka() {
@@ -84,10 +86,10 @@ int main() {
 		src=i;
 		dijk();
 	}
-	for(int i=0;i<n;i++) {
+	/*for(int i=0;i<n;i++) {
 		for(int j=0;j<n;j++)cout<<dirg[i][j]<<" ";
 		cout<<endl;
-	}
+	}*/
 	while(q--) {
 		cin>>src>>dst;
 		src--;dst--;

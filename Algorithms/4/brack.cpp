@@ -1,26 +1,35 @@
 #include<iostream>
-#include<string>
 
 using namespace std;
 
-string s;
-
-bool check(int a) {	
-	int sc=0,ans=1;
-	for(int i=0;i<s.size();i++) {
-		if(s[i]==')') {
-			if(sc==0) {
-				ans=0;
-				break;
-			}
-			sc--;
-		} else sc++;
-	}
-}
-
 int main() {
-	cin>>s;
-	if(sc!=0)ans=0;
-	cout<<ans<<endl;
+	char c;
+	long long oct=0,qc=0;
+	while(std::cin>>c) {
+		if(c=='(') {
+			oct++;
+		}
+		if(c==')') {
+			if(oct==0 && qc==0) {
+				cout<<0<<endl;
+				return 0;
+			}
+			if(oct>0)oct--;
+			else qc--;
+		}
+		if(c=='?') {
+			qc++;
+		}
+	}
+	if(oct!=0 && oct>qc) {
+		cout<<0<<endl;
+		return 0;
+	}
+	qc-=oct;
+	if(qc%2==1) {
+		cout<<0<<endl;
+		return 0;
+	}
+	cout<<1<<endl;
 	return 0;
 }
