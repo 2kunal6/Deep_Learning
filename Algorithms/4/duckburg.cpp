@@ -10,7 +10,9 @@ int cdp[1002][1002];
 vector<int> v;
 
 void calc_cdp() {
+	cdp[0][0]=1000000000;
 	for(int i=1;i<n;i++) {
+		cdp[i][i]=1000000000;
 		int lris=1,ls=0,rs=0;
 		cdp[i-1][i]=v[i]-v[i-1];
 		while(i-lris>=0 && i+lris<n) {
@@ -34,19 +36,22 @@ int main() {
 
 	calc_cdp();
 
-	/*for(int i=0;i<n+2;i++) {
+	for(int i=0;i<n+2;i++) {
 		for(int j=0;j<n+2;j++)cout<<cdp[i][j]<<" ";
 		cout<<endl;
-	}*/
+	}
 	for(int i=1;i<=n;i++) {
 		for(int m=1;m<=k;m++) {
-			int minval=1000000000;
+			int minval=1000000000, found=0;
 			for(int j=m;j<=i;j++) {
 				int tmp = dp[j-1][m-1]+cdp[j-1][i-1];
-				if(tmp < minval)minval=tmp;
+				if(tmp < minval) {
+					minval=tmp;
+					found=1;
+				}
 			}
-			dp[i][m]=minval;
-			//cout<<i<<" "<<m<<" "<<dp[i][m]<<endl;
+			if(found==1)dp[i][m]=minval;
+			cout<<i<<" "<<m<<" "<<dp[i][m]<<endl;
 		}
 	}
 	cout<<(25*n)-dp[n][k]<<endl;
