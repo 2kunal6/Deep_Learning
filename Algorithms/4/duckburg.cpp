@@ -10,9 +10,7 @@ int cdp[1002][1002];
 vector<int> v;
 
 void calc_cdp() {
-	cdp[0][0]=1000000000;
 	for(int i=1;i<n;i++) {
-		cdp[i][i]=1000000000;
 		int lris=1,ls=0,rs=0;
 		cdp[i-1][i]=v[i]-v[i-1];
 		while(i-lris>=0 && i+lris<n) {
@@ -44,7 +42,8 @@ int main() {
 		for(int m=1;m<=k;m++) {
 			if(m>i)continue;
 			if(m==1) {
-				dp[i][m]=cdp[0][i];
+				dp[i][m]=cdp[0][i-1];
+				cout<<i<<" "<<m<<" "<<dp[i][m]<<endl;
 				continue;
 			}
 			int minval=1000000000;
