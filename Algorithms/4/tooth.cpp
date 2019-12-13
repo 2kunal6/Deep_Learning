@@ -8,11 +8,11 @@ vector<vector<int> > cp;
 vector<int> ct;
 
 bool satisfy(int p, int cn) {
+	if(cn==c)return 1;
 	bool sat=0;
 	for(int i=0;i<c;i++) {
 		for(int j=0;j<=p;j++) {
 			if(cp[i][j]==0)continue;
-			sat=1;
 			cp[i][j]--;
 			sat=satisfy(p, i+1);
 			cp[i][j]++;
