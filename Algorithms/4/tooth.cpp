@@ -12,6 +12,7 @@ bool satisfy(int p, int cn) {
 	for(int i=0;i<c;i++) {
 		for(int j=0;j<=p;j++) {
 			if(cp[i][j]==0)continue;
+			sat=1;
 			cp[i][j]--;
 			sat=satisfy(p, i+1);
 			cp[i][j]++;
