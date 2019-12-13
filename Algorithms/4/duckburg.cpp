@@ -42,6 +42,7 @@ int main() {
 	}
 	for(int i=1;i<=n;i++) {
 		for(int m=1;m<=k;m++) {
+			if(m>i)continue;
 			int minval=1000000000, found=0;
 			for(int j=m;j<=i;j++) {
 				int tmp = dp[j-1][m-1]+cdp[j-1][i-1];
