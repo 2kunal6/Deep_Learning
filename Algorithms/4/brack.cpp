@@ -1,35 +1,23 @@
 #include<iostream>
+#include<stack>
 
 using namespace std;
 
 int main() {
+	stack<bit> s;
 	char c;
-	long long oct=0,qc=0;
 	while(std::cin>>c) {
-		if(c=='(') {
-			oct++;
-		}
+		if(c=='(')s.push(1);
+		if(c=='?')s.push(0);
 		if(c==')') {
-			if(oct==0 && qc==0) {
+			if(s.empty()) {
 				cout<<0<<endl;
 				return 0;
 			}
-			if(oct>0)oct--;
-			else qc--;
-		}
-		if(c=='?') {
-			qc++;
+			s.pop();
 		}
 	}
-	if(oct!=0 && oct>qc) {
-		cout<<0<<endl;
-		return 0;
-	}
-	qc-=oct;
-	if(qc%2==1) {
-		cout<<0<<endl;
-		return 0;
-	}
-	cout<<1<<endl;
+	int 
+	while(!)
 	return 0;
 }
