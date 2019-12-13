@@ -34,16 +34,16 @@ int main() {
 
 	calc_cdp();
 
-	for(int i=0;i<n+2;i++) {
+	/*for(int i=0;i<n+2;i++) {
 		for(int j=0;j<n+2;j++)cout<<cdp[i][j]<<" ";
 		cout<<endl;
-	}
+	}*/
 	for(int i=1;i<=n;i++) {
 		for(int m=1;m<=k;m++) {
 			if(m>i)continue;
 			if(m==1) {
 				dp[i][m]=cdp[0][i-1];
-				cout<<i<<" "<<m<<" "<<dp[i][m]<<endl;
+				//cout<<i<<" "<<m<<" "<<dp[i][m]<<endl;
 				continue;
 			}
 			int minval=1000000000;
@@ -52,9 +52,10 @@ int main() {
 				if(tmp < minval)minval=tmp;
 			}
 			dp[i][m]=minval;
-			cout<<i<<" "<<m<<" "<<dp[i][m]<<endl;
+			//cout<<i<<" "<<m<<" "<<dp[i][m]<<endl;
 		}
 	}
+	//cout<<dp[n][k]<<" "<<(25*n)-dp[n][k]<<endl;
 	cout<<(25*n)-dp[n][k]<<endl;
 	return 0;
 }
