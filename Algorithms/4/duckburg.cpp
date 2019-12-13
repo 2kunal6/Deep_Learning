@@ -1,19 +1,59 @@
 #include<iostream>
 #include<algorithm>
+#include<vector>
 
 using namespace std;
 
-long long dp[1001][101];
-int main() {
-	int k,n;
-	cin>>k>>n;
-	vector<int> v(n);
-	for(int i=0;i<n;i++)cin>>v[i];
-	sort(v.begin(), v.end());
+int k,n;
+int dp[1002][102];
+int cdp[1002][1002];
+vector<int> v;
 
-	for(int i=1;i<=n;i++) {
-		for(int m=1;m<=k;m++) {
-			d[i][m]=min()
+void calc_cdp() {
+	cdp[0][0]=1000000000;
+	for(int i=1;i<n;i++) {
+		cdp[i][i]=1000000000;
+		int lris=1,ls=0,rs=0;
+		cdp[i-1][i]=v[i]-v[i-1];
+		while(i-lris>=0 && i+lris<n) {
+			ls+=(v[i]-v[i-lris]);
+			rs+=(v[i+lris]-v[i]);
+			cdp[i-lris][i+lris]=ls+rs;
+			cdp[i-lris][i+lris+1]=ls+rs+(v[i+lris+1]-v[i]);
+			lris++;
 		}
 	}
+}
+
+int main() {
+	int x;
+	cin>>k>>n;
+	for(int i=0;i<n;i++) {
+		cin>>x;
+		v.push_back(x);
+	}
+	sort(v.begin(), v.end());
+
+	calc_cdp();
+
+	for(int i=0;i<n+2;i++) {
+		for(int j=0;j<n+2;j++)cout<<cdp[i][j]<<" ";
+		cout<<endl;
+	}
+	for(int i=1;i<=n;i++) {
+		for(int m=1;m<=k;m++) {
+			int minval=1000000000, found=0;
+			for(int j=m;j<=i;j++) {
+				int tmp = dp[j-1][m-1]+cdp[j-1][i-1];
+				if(tmp < minval) {
+					minval=tmp;
+					found=1;
+				}
+			}
+			if(found==1)dp[i][m]=minval;
+			cout<<i<<" "<<m<<" "<<dp[i][m]<<endl;
+		}
+	}
+	cout<<(25*n)-dp[n][k]<<endl;
+	return 0;
 }
