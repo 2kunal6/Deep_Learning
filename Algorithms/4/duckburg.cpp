@@ -43,15 +43,16 @@ int main() {
 	for(int i=1;i<=n;i++) {
 		for(int m=1;m<=k;m++) {
 			if(m>i)continue;
-			int minval=1000000000, found=0;
+			if(m==1) {
+				dp[i][m]=cdp[0][i];
+				continue;
+			}
+			int minval=1000000000;
 			for(int j=m;j<=i;j++) {
 				int tmp = dp[j-1][m-1]+cdp[j-1][i-1];
-				if(tmp < minval) {
-					minval=tmp;
-					found=1;
-				}
+				if(tmp < minval)minval=tmp;
 			}
-			if(found==1)dp[i][m]=minval;
+			dp[i][m]=minval;
 			cout<<i<<" "<<m<<" "<<dp[i][m]<<endl;
 		}
 	}
