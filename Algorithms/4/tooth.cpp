@@ -21,6 +21,7 @@ bool satisfy(int p, int cn) {
 	return sat;
 }
 int main() {
+	cin>>c>>t;
 	for(int i=0;i<t;i++) {
 		cin>>tmp;
 		ct.push_back(tmp);
