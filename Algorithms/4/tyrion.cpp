@@ -35,7 +35,7 @@ int main() {
 		if(tmp=="odd")eo[i]=1;
 	}
 	tot_names=mp.size();
-	long long combi=0;
+	long long combi=1;
 	while(1) {
 		bitset<10000> comb(combi);
 		bool corr=1;

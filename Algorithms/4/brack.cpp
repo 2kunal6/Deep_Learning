@@ -4,22 +4,18 @@
 using namespace std;
 
 int main() {
-	stack<bool> s,ts;
+	int s=0,ts=0;
 	char c;
 	while(std::cin>>c) {
-		if(c=='(')s.push(1);
-		if(c=='?')s.push(0);
+		if(c=='(')s++;
+		if(c=='?')ts++;
 		if(c==')') {
-			if(s.empty() && ts.empty()) {
+			if(s==0 && ts==0) {
 				cout<<0<<endl;
 				return 0;
 			}
-			while((!s.empty()) && (!s.top()==1)) {
-				ts.push(s.top());
-				s.pop();
-			}
-			if(s.empty())ts.pop();
-			else s.pop();
+			if(s==0)ts--;
+			else s--;
 		}
 	}
 	while(!ts.empty()) {
