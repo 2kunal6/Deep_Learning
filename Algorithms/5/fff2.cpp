@@ -1,5 +1,6 @@
 #include<iostream>
 #include<vector>
+#include<algorithm>
 
 using namespace std;
 
@@ -8,6 +9,8 @@ vector<pair<int, int> > es;
 vector<int> pn;
 
 bool isposs() {
+	//for(int i=0;i<pn.size();i++)cout<<pn[i]<<" ";
+	//cout<<endl;
 	for(int i=0;i<m;i++) {
 		if((find(pn.begin(), pn.end(), es[i].first)==pn.end()) && (find(pn.begin(), pn.end(), es[i].second)==pn.end()))return 0;
 	}
