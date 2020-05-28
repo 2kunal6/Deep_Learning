@@ -1,0 +1,3 @@
+Assignment 2:
+  - Using color and grayscale images had no effect
+  - Normalizing had no effect
