@@ -4,3 +4,6 @@ version 2 : L2 regularization
 version 3 : SGD
 version 4 : Adagrad
 version 5 : adadelta
+version 6 : RMSprop
+version 7 : tanh
+version 8 : sigmoid
