@@ -1,3 +1,6 @@
 version 0 : adam
 version 1 : dropout
 version 2 : L2 regularization
+version 3 : SGD
+version 4 : Adagrad
+version 5 : adadelta
