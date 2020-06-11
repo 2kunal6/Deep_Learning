@@ -1,0 +1,3 @@
+version 0 : normal
+version 1 : dropout
+version 2 : L2 regularization
