@@ -8,3 +8,4 @@ version 6 : RMSprop
 version 7 : tanh
 version 8 : sigmoid
 version 9 : self hinge loss
+version 10 : l1 regularization
