@@ -1,5 +1,5 @@
 version 0 : adam
 version 1 : SGD
-version 2 : 
-version 3 : 
+version 2 : adagrad
+version 3 : adadelta
 version 4 : 
