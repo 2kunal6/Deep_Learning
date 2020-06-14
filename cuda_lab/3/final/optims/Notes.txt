@@ -2,4 +2,4 @@ version 0 : adam
 version 1 : SGD
 version 2 : adagrad
 version 3 : adadelta
-version 4 : 
+version 4 : rmsprop
