@@ -1,0 +1,3 @@
+https://www.kaggle.com/vishalsubbiah/pokemon-images-and-types
+https://www.kaggle.com/paultimothymooney/chest-xray-pneumonia
+https://www.kaggle.com/jessicali9530/caltech256
