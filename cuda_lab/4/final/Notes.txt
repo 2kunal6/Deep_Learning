@@ -1,0 +1,1 @@
+Average Pooling worked better than Max Pooling for us for 100 iterations.
