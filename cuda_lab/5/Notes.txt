@@ -1,3 +1,3 @@
 https://www.kaggle.com/vishalsubbiah/pokemon-images-and-types
 https://www.kaggle.com/paultimothymooney/chest-xray-pneumonia
-https://www.kaggle.com/jessicali9530/caltech256
+https://www.kaggle.com/jessicali9530/caltech256 : When using this dataset, please remember to cite: Griffin, G. Holub, AD. Perona, P. The Caltech 256. Caltech Technical Report.
