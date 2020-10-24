@@ -1,8 +1,0 @@
-Assignment 2:
-  - Using color and grayscale images had no effect
-  - Normalizing had no effect
-
-Assignment 5:
-  - Grayscale images used almost the same amount of bytes as color images. If Grayscale images would take lesser bytes then we would have used it so that we could use more images to train.
-  - We took every 10th image as sample because in videos generally 2 consecutive frames tend to be very similar.
-  - We used same number of negative images as positive images distributed among : human, dogs, cats, 
